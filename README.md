@@ -1,4 +1,4 @@
-# HostForge 🚀
+# HostForge
 
 **HostForge** is a user-friendly tool that enables non-technical users to deploy static websites to Azure without needing to use the terminal or understand complex cloud infrastructure.
 
@@ -146,7 +146,7 @@ my-website/
 
 3. **Access your site**: Use the provided URL to view your live website
 
-## 🔧 Configuration
+## Configuration
 
 ### Azure Locations
 HostForge supports all Azure regions that support static website hosting:
@@ -160,7 +160,7 @@ HostForge supports all Azure regions that support static website hosting:
 - **Storage Account**: User-provided name (3-24 characters, lowercase alphanumeric)
 - **Website URL**: `https://{storage-account}.z13.web.core.windows.net`
 
-## 🛠️ Development
+## Development
 
 ### Project Structure
 ```
@@ -278,10 +278,6 @@ To enable debug logging, modify `backend/app.py`:
 ```python
 logging.basicConfig(level=logging.DEBUG)
 ```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Support
 
