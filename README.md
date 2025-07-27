@@ -2,7 +2,7 @@
 
 **HostForge** is a user-friendly tool that enables non-technical users to deploy static websites to Azure without needing to use the terminal or understand complex cloud infrastructure.
 
-## ✨ Features
+## Features
 
 - **Simple Web Interface**: Upload your static website as a ZIP file through an intuitive web form
 - **One-Click Deployment**: Deploy to Azure with just a few clicks
@@ -11,7 +11,7 @@
 - **No Terminal Required**: Everything runs through a web interface
 - **Secure**: Validates inputs and handles errors gracefully
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 HostForge/
@@ -29,7 +29,7 @@ HostForge/
 4. **Deployment**: Azure CLI uploads static files to the storage account
 5. **Result**: Live website URL is returned to the user
 
-## 📋 System Requirements
+## System Requirements
 
 ### Minimum Requirements
 - **Operating System**: Windows 10/11
@@ -70,7 +70,7 @@ HostForge/
 2. **Azure Login**: Run `az login` in your terminal to authenticate with Azure
 3. **Permissions**: Your account needs permissions to create resource groups and storage accounts
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Windows Users
 1. **Download/Clone** this repository
@@ -108,7 +108,7 @@ python app.py
   # Then open http://localhost:8000
   ```
 
-## 📝 Usage Guide
+## Usage Guide
 
 ### Preparing Your Static Website
 
@@ -190,7 +190,7 @@ HostForge/
 - **Resource Group**: Creates Azure resource group
 - **Storage Account**: Creates storage account with static website hosting
 
-## 🔒 Security Features
+## Security Features
 
 - **Input Validation**: All user inputs are validated before processing
 - **File Type Checking**: Only ZIP files are accepted
@@ -198,7 +198,7 @@ HostForge/
 - **Error Handling**: Comprehensive error handling and user feedback
 - **Temporary File Cleanup**: Automatic cleanup of uploaded files
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -279,11 +279,11 @@ To enable debug logging, modify `backend/app.py`:
 logging.basicConfig(level=logging.DEBUG)
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 📞 Support
+## Support
 
 For support and questions:
 1. Check the troubleshooting section above
