@@ -1,0 +1,11 @@
+# HostForge Dependencies
+# This file contains the main project dependencies
+
+# Backend Dependencies
+Flask==2.3.3
+Flask-CORS==4.0.0
+Werkzeug==2.3.7
+
+# Development Dependencies (optional)
+# python-dotenv==1.0.0  # For environment variable management
+# pytest==7.4.0        # For testing

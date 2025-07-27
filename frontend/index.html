@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HostForge - Static Site Deployment</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="banner">
+    <img src="images/hostforge.png" alt="HostForge Logo" class="banner-img"/>
+  </div>
+
+  <div class="form-container">
+    <form id="deploy-form" enctype="multipart/form-data">
+      <label for="location">Azure Location</label>
+      <select id="location" name="location" required></select>
+
+      <label for="environment">Environment</label>
+      <input type="text" id="environment" name="environment" placeholder="e.g., production" required/>
+
+      <label for="owner">Owner</label>
+      <input type="text" id="owner" name="owner" placeholder="e.g., johndoe" required/>
+
+      <label for="storage_account_name">Storage Account Name</label>
+      <input type="text" id="storage_account_name" name="storage_account_name" placeholder="e.g., mystaticweb123" required/>
+
+      <label for="zip_file">Website Zip File</label>
+      <input type="file" id="zip_file" name="zip_file" accept=".zip" required/>
+
+      <button type="submit">Deploy</button>
+
+      <div id="status"></div>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
