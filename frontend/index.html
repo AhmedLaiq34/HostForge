@@ -8,6 +8,18 @@
 </head>
 <body>
 
+  <!-- Animated Background -->
+  <div class="background-animation">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="glow-orb"></div>
+    <div class="glow-orb"></div>
+  </div>
+
   <div class="banner">
     <img src="images/hostforge.png" alt="HostForge Logo" class="banner-img"/>
   </div>
@@ -27,13 +39,26 @@
       <input type="text" id="storage_account_name" name="storage_account_name" placeholder="e.g., mystaticweb123" required/>
 
       <label for="zip_file">Website Zip File</label>
-      <input type="file" id="zip_file" name="zip_file" accept=".zip" required/>
+      <div class="file-upload-wrapper">
+        <input type="file" id="zip_file" name="zip_file" accept=".zip" required/>
+        <label for="zip_file" class="file-upload-label">
+          📁 Choose a ZIP file or drag and drop here
+        </label>
+      </div>
 
-      <button type="submit">Deploy</button>
+      <button type="submit">🚀 Deploy Website</button>
 
       <div id="status"></div>
     </form>
   </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <a href="https://www.linkedin.com/in/ahmed-laiq-04ba47283?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="linkedin-link">
+        LinkedIn: Ahmed Laiq
+      </a>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
