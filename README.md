@@ -16,6 +16,10 @@
 ```
 HostForge/
 ├── frontend/           # Web interface (HTML/CSS/JS)
+│   ├── landing.html    # New landing page with modern design
+│   ├── index.html      # Deployment form page
+│   ├── landing-style.css & landing-script.js
+│   └── form-style.css & form-script.js
 ├── backend/           # Flask API server
 ├── terraform/         # Infrastructure as Code
 └── start_hostforge.bat # Windows launcher
@@ -23,11 +27,20 @@ HostForge/
 
 ### How It Works
 
-1. **User Interface**: Frontend form collects website files and configuration
-2. **Backend Processing**: Flask API handles file uploads and orchestrates deployment
-3. **Infrastructure**: Terraform provisions Azure Storage Account with static website hosting
-4. **Deployment**: Azure CLI uploads static files to the storage account
-5. **Result**: Live website URL is returned to the user
+1. **Landing Page**: Modern, responsive landing page introduces HostForge features
+2. **User Interface**: Clean deployment form collects website files and configuration
+3. **Backend Processing**: Flask API handles file uploads and orchestrates deployment
+4. **Infrastructure**: Terraform provisions Azure Storage Account with static website hosting
+5. **Deployment**: Azure CLI uploads static files to the storage account
+6. **Result**: Live website URL is returned to the user
+
+### User Experience
+
+- **Modern Design**: Beautiful, responsive landing page with interactive elements
+- **Intuitive Flow**: Start button leads directly to the deployment form
+- **Real-time Feedback**: Progress indicators and status updates during deployment
+- **Mobile Friendly**: Works seamlessly on desktop and mobile devices
+- **Error Handling**: Clear error messages and validation feedback
 
 ## System Requirements
 

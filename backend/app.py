@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings("ignore", message=".*development server.*")
+
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import os
@@ -98,12 +101,25 @@ def find_index_html(directory):
 @app.route('/')
 def home():
     """Serve the main frontend page"""
-    return send_from_directory('../frontend', 'index.html')
+    response = send_from_directory('../frontend', 'landing.html')
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
+
+@app.route('/test')
+def test():
+    """Test route to verify Flask is working"""
+    return jsonify({'message': 'Flask is working! Landing page should be served at /'})
 
 @app.route('/<path:filename>')
 def serve_frontend(filename):
     """Serve frontend static files"""
-    return send_from_directory('../frontend', filename)
+    response = send_from_directory('../frontend', filename)
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
 
 @app.route('/deploy', methods=['POST'])
 def deploy_site():
@@ -273,4 +289,4 @@ def status():
         return jsonify({"status": "unhealthy", "error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=False)

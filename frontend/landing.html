@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostForge - Deploy Static Websites with Ease</title>
+    <link rel="stylesheet" href="landing-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/hostforge.png" alt="HostForge" class="nav-logo-img">
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Deploy Static Websites
+                    <span class="gradient-text">in Seconds</span>
+                </h1>
+                <p class="hero-subtitle">
+                    HostForge makes it incredibly simple to deploy your static websites. 
+                    Just upload your files and get a live URL instantly.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="startDeployment()">
+                        <i class="fas fa-rocket"></i>
+                        Start
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-buttons">
+                            <span class="btn-red"></span>
+                            <span class="btn-yellow"></span>
+                            <span class="btn-green"></span>
+                        </div>
+                        <span class="window-title">terminal</span>
+                    </div>
+                    <div class="window-content">
+                        <div class="code-line">
+                            <span class="prompt">$</span>
+                            <span class="command">hostforge deploy</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="output">🚀 Deploying your website...</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="output">✅ Website deployed successfully!</span>
+                        </div>
+                        <div class="code-line">
+                            <span class="output">🌐 Live at: https://your-site.hostforge.app</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <script src="landing-script.js"></script>
+</body>
+</html> 
