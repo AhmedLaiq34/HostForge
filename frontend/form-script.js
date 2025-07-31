@@ -102,7 +102,7 @@ function initFormHandling() {
             const result = await response.json();
             
             // Show success
-            updateStatus(`✅ Deployment successful! Your website is live at: ${result.website_url}`, 'success');
+            updateStatus(`✅ Deployment successful! Your website is live at: ${result.url}`, 'success');
             
             // Reset button
             submitBtn.disabled = false;
