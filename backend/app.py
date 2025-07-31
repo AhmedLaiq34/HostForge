@@ -40,6 +40,38 @@ def generate_resource_group_name(owner, environment, storage_name):
     unique_id = str(uuid.uuid4())[:8]
     return f"rg-{owner}-{environment}-{storage_name}-{timestamp}-{unique_id}".lower()
 
+def get_static_website_endpoint(location):
+    """Get the correct static website endpoint suffix based on location"""
+    # Map of Azure regions to their static website endpoint suffixes
+    endpoint_map = {
+        "eastus": "z13.web.core.windows.net",
+        "eastus2": "z13.web.core.windows.net", 
+        "southcentralus": "z13.web.core.windows.net",
+        "westus2": "z13.web.core.windows.net",
+        "westus3": "z13.web.core.windows.net",
+        "canadacentral": "z13.web.core.windows.net",
+        "canadaeast": "z13.web.core.windows.net",
+        "northeurope": "z13.web.core.windows.net",
+        "westeurope": "z13.web.core.windows.net",
+        "uksouth": "z13.web.core.windows.net",
+        "ukwest": "z13.web.core.windows.net",
+        "eastasia": "z13.web.core.windows.net",
+        "southeastasia": "z13.web.core.windows.net",
+        "japaneast": "z13.web.core.windows.net",
+        "japanwest": "z13.web.core.windows.net",
+        "australiaeast": "z13.web.core.windows.net",
+        "australiasoutheast": "z13.web.core.windows.net",
+        "centralindia": "z13.web.core.windows.net",
+        "southindia": "z13.web.core.windows.net",
+        "westindia": "z13.web.core.windows.net",
+        "brazilsouth": "z13.web.core.windows.net",
+        "southafricanorth": "z13.web.core.windows.net",
+        "uaenorth": "z13.web.core.windows.net"
+    }
+    
+    # Default to z13 if location not found
+    return endpoint_map.get(location.lower(), "z13.web.core.windows.net")
+
 def check_dependencies():
     """Check if required tools are installed"""
     missing = []
@@ -246,8 +278,34 @@ def deploy_site():
             cwd=TERRAFORM_DIR,
             capture_output=True, text=True, check=True, timeout=60
         )
-        outputs = json.loads(output.stdout)
-        url = outputs["static_site_url"]["value"]
+        
+        try:
+            outputs = json.loads(output.stdout)
+            logger.info(f"Terraform outputs: {outputs}")
+            
+            # Check if static_site_url exists and has a value
+            if "static_site_url" not in outputs:
+                logger.error("static_site_url not found in Terraform outputs")
+                raise KeyError("static_site_url not found in outputs")
+            
+            url = outputs["static_site_url"]["value"]
+        except (json.JSONDecodeError, KeyError) as e:
+            logger.error(f"Failed to parse Terraform outputs: {e}")
+            logger.info("Attempting to construct URL manually...")
+            # Construct URL based on location
+            endpoint_suffix = get_static_website_endpoint(location)
+            url = f"https://{storage_account_name}.{endpoint_suffix}/"
+            logger.info(f"Using fallback URL: {url}")
+        if not url:
+            logger.error("static_site_url value is empty or null")
+            # Fallback: construct URL manually
+            logger.info("Attempting to construct URL manually...")
+            endpoint_suffix = get_static_website_endpoint(location)
+            fallback_url = f"https://{storage_account_name}.{endpoint_suffix}/"
+            logger.info(f"Using fallback URL: {fallback_url}")
+            url = fallback_url
+        
+        logger.info(f"Deployment URL: {url}")
 
         # Cleanup temp files
         cleanup_temp_files()
