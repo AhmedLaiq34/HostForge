@@ -99,7 +99,20 @@ function initFormHandling() {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const result = await response.json();
+            const responseText = await response.text();
+            console.log('Raw response:', responseText);
+            
+            let result;
+            try {
+                result = JSON.parse(responseText);
+            } catch (parseError) {
+                console.error('Failed to parse JSON:', parseError);
+                throw new Error('Invalid response from server');
+            }
+            
+            // Debug logging
+            console.log('Deployment response:', result);
+            console.log('URL from response:', result.url);
             
             // Show success
             updateStatus(`✅ Deployment successful! Your website is live at: ${result.url}`, 'success');

@@ -311,12 +311,14 @@ def deploy_site():
         cleanup_temp_files()
 
         logger.info(f"Deployment successful: {url}")
-        return jsonify({
+        response_data = {
             "success": True, 
             "url": url,
             "resource_group_name": resource_group_name,
             "storage_account_name": storage_account_name
-        })
+        }
+        logger.info(f"Sending response: {response_data}")
+        return jsonify(response_data)
 
     except subprocess.CalledProcessError as e:
         cleanup_temp_files()
