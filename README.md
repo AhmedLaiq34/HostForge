@@ -4,43 +4,56 @@
 
 ## Features
 
+- **Modern Landing Page**: Beautiful, responsive landing page with interactive elements
 - **Simple Web Interface**: Upload your static website as a ZIP file through an intuitive web form
 - **One-Click Deployment**: Deploy to Azure with just a few clicks
 - **Automatic Infrastructure**: Terraform automatically provisions all necessary Azure resources
 - **Real-time Status Updates**: See deployment progress and get live URLs
 - **No Terminal Required**: Everything runs through a web interface
+- **Windows Launcher**: One-click startup script for Windows users
 - **Secure**: Validates inputs and handles errors gracefully
 
-##  Architecture
+## Architecture
 
 ```
 HostForge/
 ├── frontend/           # Web interface (HTML/CSS/JS)
-│   ├── landing.html    # New landing page with modern design
+│   ├── landing.html    # Modern landing page with interactive design
 │   ├── index.html      # Deployment form page
 │   ├── landing-style.css & landing-script.js
-│   └── form-style.css & form-script.js
-├── backend/           # Flask API server
-├── terraform/         # Infrastructure as Code
-└── start_hostforge.bat # Windows launcher
+│   ├── form-style.css & form-script.js
+│   ├── style.css & script.js
+│   └── images/         # Static assets including logo
+├── backend/           # Flask API server with enhanced security
+│   ├── app.py         # Main Flask application with CORS support
+│   └── requirements.txt # Python dependencies
+├── terraform/         # Infrastructure as Code (modular)
+│   ├── main.tf        # Main Terraform configuration
+│   ├── variables.tf   # Input variables
+│   ├── outputs.tf     # Output values
+│   └── modules/       # Terraform modules
+│       ├── resource_group/  # Resource group module
+│       └── storage_account/ # Storage account module
+└── start_hostforge.bat # Windows launcher script
 ```
 
 ### How It Works
 
-1. **Landing Page**: Modern, responsive landing page introduces HostForge features
-2. **User Interface**: Clean deployment form collects website files and configuration
-3. **Backend Processing**: Flask API handles file uploads and orchestrates deployment
-4. **Infrastructure**: Terraform provisions Azure Storage Account with static website hosting
-5. **Deployment**: Azure CLI uploads static files to the storage account
-6. **Result**: Live website URL is returned to the user
+1. **Landing Page**: Modern, responsive landing page introduces HostForge features with interactive elements
+2. **User Interface**: Clean deployment form with real-time validation and progress feedback
+3. **Backend Processing**: Enhanced Flask API handles file uploads with comprehensive error handling
+4. **Infrastructure**: Modular Terraform provisions Azure Storage Account with static website hosting
+5. **Deployment**: Azure CLI uploads static files to the storage account with timeout protection
+6. **Result**: Live website URL is returned to the user with detailed deployment information
 
 ### User Experience
 
-- **Modern Design**: Beautiful, responsive landing page with interactive elements
+- **Modern Design**: Beautiful, responsive landing page with gradient backgrounds and animations
 - **Intuitive Flow**: Start button leads directly to the deployment form
 - **Real-time Feedback**: Progress indicators and status updates during deployment
 - **Mobile Friendly**: Works seamlessly on desktop and mobile devices
 - **Error Handling**: Clear error messages and validation feedback
+- **Health Checks**: System status verification before deployment
 
 ## System Requirements
 
@@ -85,19 +98,20 @@ HostForge/
 
 ## Quick Start
 
-### Windows Users
+### Windows Users (Recommended)
 1. **Download/Clone** this repository
 2. **Double-click** `start_hostforge.bat`
 3. **Wait** for the application to start (first run may take longer to install dependencies)
-4. **Open** your browser to the frontend interface
-5. **Upload** your static website ZIP file and fill in the form
-6. **Deploy** with one click!
+4. **Open** your browser to the landing page interface
+5. **Click "Start"** to begin the deployment process
+6. **Upload** your static website ZIP file and fill in the form
+7. **Deploy** with one click!
 
 ### Manual Start (Windows)
 
 #### Step 1: Clone the Repository
 ```cmd
-git clone https://github.com/yourusername/HostForge.git
+git clone https://github.com/AhmedLaiq34/HostForge.git
 cd HostForge
 ```
 
@@ -113,12 +127,13 @@ python app.py
 ```
 
 #### Step 4: Open the Frontend
-- Navigate to `frontend/index.html` in your browser
+- Navigate to `frontend/landing.html` in your browser for the landing page
+- Or go directly to `frontend/index.html` for the deployment form
 - Or serve it with a local web server:
   ```cmd
   cd frontend
   python -m http.server 8000
-  # Then open http://localhost:8000
+  # Then open http://localhost:8000/landing.html
   ```
 
 ## Usage Guide
@@ -144,20 +159,22 @@ my-website/
 
 ### Deployment Process
 
-1. **Fill out the form**:
+1. **Start from the landing page**: Click "Start" to begin the deployment process
+2. **Fill out the form**:
    - **Azure Location**: Choose the region closest to your users
    - **Environment**: Enter environment name (e.g., "production", "staging")
    - **Owner**: Your name or team identifier
    - **Storage Account Name**: 3-24 characters, lowercase letters and numbers only
    - **Website ZIP File**: Upload your static website
 
-2. **Click Deploy**: The system will:
-   - Validate your inputs
-   - Create Azure resources
-   - Upload your website files
-   - Return a live URL
+3. **Click Deploy**: The system will:
+   - Validate your inputs in real-time
+   - Check system health and dependencies
+   - Create Azure resources using modular Terraform
+   - Upload your website files with progress feedback
+   - Return a live URL with detailed deployment information
 
-3. **Access your site**: Use the provided URL to view your live website
+4. **Access your site**: Use the provided URL to view your live website
 
 ## Configuration
 
@@ -179,29 +196,33 @@ HostForge supports all Azure regions that support static website hosting:
 ```
 HostForge/
 ├── frontend/
-│   ├── index.html      # Main web interface
-│   ├── style.css       # Styling
-│   ├── script.js       # Frontend logic
+│   ├── landing.html    # Modern landing page
+│   ├── index.html      # Deployment form
+│   ├── landing-style.css & landing-script.js
+│   ├── form-style.css & form-script.js
+│   ├── style.css & script.js
 │   └── images/         # Static assets
 ├── backend/
-│   ├── app.py          # Flask API server
+│   ├── app.py          # Enhanced Flask API server
 │   └── requirements.txt # Python dependencies
 ├── terraform/
 │   ├── main.tf         # Main Terraform configuration
 │   ├── variables.tf    # Input variables
 │   ├── outputs.tf      # Output values
 │   └── modules/        # Terraform modules
+│       ├── resource_group/  # Resource group module
+│       └── storage_account/ # Storage account module
 └── start_hostforge.bat # Windows launcher
 ```
 
 ### Backend API Endpoints
 - `GET /` - Health check
 - `GET /status` - System status and dependency check
-- `POST /deploy` - Main deployment endpoint
+- `POST /deploy` - Main deployment endpoint with enhanced error handling
 
 ### Terraform Modules
-- **Resource Group**: Creates Azure resource group
-- **Storage Account**: Creates storage account with static website hosting
+- **Resource Group Module**: Creates Azure resource group with proper naming
+- **Storage Account Module**: Creates storage account with static website hosting
 
 ## Security Features
 
@@ -210,6 +231,8 @@ HostForge/
 - **Storage Account Naming**: Enforces Azure naming conventions
 - **Error Handling**: Comprehensive error handling and user feedback
 - **Temporary File Cleanup**: Automatic cleanup of uploaded files
+- **CORS Support**: Proper cross-origin resource sharing configuration
+- **Timeout Protection**: Prevents hanging operations with timeouts
 
 ## Troubleshooting
 
@@ -302,4 +325,4 @@ For support and questions:
 
 ---
 
-**Happy Hosting! 🎉**
+**Happy Hosting! 🚀**
